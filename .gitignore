@@ -1,0 +1,41 @@
+# --- Python ---
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# --- Real medical imaging data: NEVER commit this ---
+# BraTS (and any other patient/imaging data) must be downloaded by each user
+# under the appropriate data-use agreement, not redistributed via this repo.
+# Put real data under data/raw/ locally; it's ignored here on purpose.
+data/raw/
+*.nii
+*.nii.gz
+*.h5
+*.hdf5
+*.dcm
+
+# --- Generated results (regenerate, don't version) ---
+results/*.json
+results/*.txt
+*.pt
+*.pth
+checkpoints/
+
+# --- LaTeX build artifacts ---
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.bbl
+paper/*.blg
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
+
+# --- OS/editor cruft ---
+.DS_Store
+.vscode/
+.idea/

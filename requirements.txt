@@ -1,0 +1,10 @@
+# Pinned to versions actually tested against this codebase in CI/dev sandbox.
+# For GPU training, install the CUDA build of torch matching your driver from
+# https://pytorch.org/get-started/locally/ instead of the line below.
+torch==2.13.0
+numpy==2.4.4
+matplotlib==3.10.8
+nibabel==5.4.2          # real BraTS .nii/.nii.gz loading (BraTSDataset)
+h5py==3.16.0             # pre-sliced BraTS .h5 loading (H5SliceBraTSDataset)
+monai==1.6.0              # validated loss/metric cross-checks; optional but recommended
+pytest==9.1.1              # test suite (tests/)
