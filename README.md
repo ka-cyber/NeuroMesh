@@ -62,7 +62,7 @@ NeuroMesh/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/NeuroMesh.git
+git clone https://github.com/ka-cyber/NeuroMesh.git
 cd NeuroMesh
 ```
 
