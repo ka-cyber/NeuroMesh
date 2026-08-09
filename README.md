@@ -1,177 +1,528 @@
 # NeuroMesh
 
-A self-rewiring graph-neural topology controller for fault-tolerant medical
-image segmentation. This repo implements a GCN+GRU controller that predicts a
-dynamic edge-activation mask at the bottleneck of a 4-channel (T1/T1ce/T2/FLAIR)
-U-Net, trained with a composite task + rewiring + sparsity + diversity loss.
+**NeuroMesh** is a self-reconfiguring graph-neural topology controller for
+fault-tolerant multimodal medical image segmentation.
 
-## Status (read this before citing any number from this repo)
+The framework integrates a **GCN–GRU topology controller** into the bottleneck
+of a four-channel U-Net to dynamically predict an edge-activation mask over
+feature representations. The controller is trained using a composite objective
+combining segmentation performance with topology-rewiring, sparsity, and
+diversity regularization.
 
-**Engineering: complete and tested.** Every module below has been implemented,
-run, and checked — 26/26 automated tests pass, the full pipeline runs
-end-to-end on synthetic data, it has been verified against one real
-BraTS-format case, and the manuscript compiles cleanly.
+NeuroMesh is designed to investigate whether **dynamic computational topology
+reconfiguration** can provide increased robustness to modality degradation and
+internal feature faults in multimodal medical image segmentation.
 
-**Science: not yet done.** No version of this model has been trained on real
-BraTS data. Every number currently in `results/` comes from either synthetic
-placeholder data or a model trained only on that synthetic data — they confirm
-the *pipeline* works, not that the *architecture* segments real tumors well.
-The one real-data test we ran (see `results/`) returned near-zero tumor-class
-Dice, which is the expected and correct outcome for a model that has never
-seen a real brain, not a finding about NeuroMesh's real-world capability
-either way. See `paper/tmi/neuromesh.tex or paper/media/main.tex` for a full accounting — every
-placeholder is marked with a visible `\TODO{}`.
+---
 
-**Do not report any Dice/latency/robustness number from this repo as a
-validated result until it has been produced by training on real, properly
-split BraTS data.**
+## Project status
 
-## What's real and what's a baseline you get from open-source
+### Engineering and implementation — complete
 
-Our loss/metric implementations were cross-checked against
-[MONAI](https://github.com/Project-MONAI/MONAI) (agreement within ~0.001-0.0013;
-see `results/`), and [nnU-Net](https://github.com/MIC-DKFZ/nnUNet) is a
-reasonable open-source reference point to benchmark against once real
-training happens — neither is vendored in this repo, just noted here as
-recommended companions.
+The current release contains a complete, executable implementation of the
+NeuroMesh framework.
 
-## Repository structure
+- 26/26 automated tests pass.
+- The complete training and evaluation pipeline runs end-to-end on synthetic
+  data.
+- Real adult BraTS2021 data have been successfully loaded, processed, and
+  evaluated.
+- Real pediatric BraTS-PEDs data have been successfully loaded, processed, and
+  evaluated.
+- Adult and pediatric modality naming conventions are handled by the same
+  loader framework.
+- Real segmentation labels have been used for single-case verification.
+- Synthetic modality-dropout and feature-fault experiments are implemented.
+- Latency benchmarks are implemented and measured.
+- Baseline architectures are included.
+- The project includes reproducible environment configuration through
+  `requirements.txt`, Docker, and continuous integration.
+- Figure-generation scripts are included with the repository.
+
+### Scientific validation — deliberately scoped
+
+The current release should be understood as a **methodological and
+implementation-validation release**, not as a population-level clinical or
+benchmark study.
+
+NeuroMesh has been exercised on real BraTS data, including:
+
+- one adult BraTS2021 multimodal case;
+- one pediatric BraTS-PEDs multimodal case;
+- corresponding real segmentation labels for quantitative pipeline
+  verification.
+
+These real-data experiments demonstrate that the complete pipeline can ingest
+real multimodal MRI data, perform preprocessing and inference, and compare
+predictions against real segmentation annotations.
+
+However, the current model checkpoint used for these real-case verification
+experiments was trained on synthetic data. Therefore, the single-case real-data
+experiments **must not be interpreted as estimates of real-world segmentation
+performance or generalization**.
+
+In particular, this repository does **not** currently claim:
+
+- state-of-the-art BraTS segmentation performance;
+- population-level Dice or HD95 performance;
+- superiority over nnU-Net or other established segmentation systems;
+- clinical diagnostic performance;
+- clinical utility;
+- generalization across independent patient cohorts.
+
+The purpose of the current release is to provide a transparent, reproducible
+implementation and validation framework from which systematic real-data
+training and benchmarking can be performed.
+
+---
+
+## What has been validated
+
+The current NeuroMesh implementation has been evaluated at several levels.
+
+### 1. Software and unit-level validation
+
+The repository contains automated tests covering the major model, loss,
+evaluation, and data-processing components.
 
 ```
-data/brats_loader.py        Real BraTS loaders (raw NIfTI + pre-sliced HDF5
-                             Kaggle mirror) + a synthetic MockBraTSDataset for
-                             dependency-free pipeline testing.
-models/layers.py            GraphConvLayer (normalized GCN) + NeuroMeshLayer
-                             (the MLP->GRU->GCN->mask-MLP controller).
-models/segmentation.py      NeuroMeshUNet: 4-channel U-Net with the controller
-                             gating the bottleneck.
-models/baselines.py         PlainUNet / DropoutUNet (MC-Dropout) / EnsembleUNet
-                             -- real comparison baselines (not in the original
-                             draft this project started from).
-utils/loss.py                Composite loss (task Dice+CE, rewiring KL,
-                             sparsity, diversity).
-utils/evaluation.py          Dice-under-modality-dropout + measured latency.
-utils/failure_models.py      Random / correlated / cascading / Byzantine
-                             fault injection on bottleneck features, plus a
-                             transfer-matrix evaluator.
-train.py                     End-to-end runnable script (synthetic data by
-                             default -- swap in real BraTS via brats_loader.py).
-figures/                     Scripts that generate every figure, plus their
-                             current (synthetic/pipeline-check) output PNGs.
-tests/                       26 automated tests (pytest).
-paper/tmi/neuromesh.tex        IEEE T-MI submission (IEEEtran), compiles cleanly.
-paper/media/main.tex           Medical Image Analysis submission (Elsevier
-                                elsarticle), compiles cleanly, real author
-                                block, CRediT/competing-interest/data-availability
-                                sections included. Self-contained Overleaf
-                                project: main.tex + references.bib + figures/.
-                                Every unfilled result marked with \TODO{}.
-results/                     Current run outputs (see Status above).
-Dockerfile, requirements.txt, .github/workflows/tests.yml
-                             Reproducible environment + CI.
 ```
+26 / 26 automated tests passing
+2. Synthetic end-to-end training
 
-## Setup
+A dependency-light synthetic dataset is provided to verify that the complete
+pipeline can execute without requiring external medical-imaging data.
 
-```bash
+The synthetic pipeline exercises:
+
+data generation
+      ↓
+multimodal input
+      ↓
+U-Net encoder
+      ↓
+NeuroMesh topology controller
+      ↓
+dynamic edge mask
+      ↓
+U-Net decoder
+      ↓
+segmentation
+      ↓
+loss + evaluation
+
+Synthetic results are used to verify implementation behavior and should not be
+interpreted as clinical or real-world segmentation results.
+
+3. Real adult BraTS2021 verification
+
+The framework has been exercised using a real adult BraTS2021 case containing
+the four standard MRI modalities:
+
+T1
+T1ce
+T2
+FLAIR
+
+The corresponding real segmentation annotation was also used for
+single-case verification.
+
+This verifies the complete path from real multimodal MRI input through
+preprocessing, model inference, and comparison with a real segmentation label.
+
+4. Real pediatric BraTS-PEDs verification
+
+The framework has also been exercised using a real pediatric BraTS-PEDs case
+with:
+
+T1n
+T1c
+T2w
+T2f
+
+The corresponding pediatric segmentation annotation is handled using the
+pediatric BraTS label convention.
+
+This verifies that the same software framework can accommodate the distinct
+modality naming and label conventions used by adult and pediatric BraTS
+datasets.
+
+5. Modality-dropout evaluation
+
+Controlled modality-dropout experiments are implemented to investigate the
+behavior of the segmentation pipeline when one or more input modalities become
+unavailable.
+
+The current synthetic experiments demonstrate that the evaluation machinery
+can simulate modality degradation and quantify its effect.
+
+Real-data population-level modality-dropout benchmarking remains future work.
+
+6. Feature-fault evaluation
+
+NeuroMesh includes controlled feature-level fault models covering:
+
+random faults;
+correlated faults;
+cascading faults;
+Byzantine-style perturbations.
+
+These mechanisms are intended to model degradation or corruption of internal
+feature representations and to evaluate whether dynamic topology control can
+provide fault tolerance.
+
+7. Computational latency
+
+Inference latency is measured directly rather than assumed from a theoretical
+constant.
+
+The repository includes a latency benchmark for evaluating computational cost
+under controlled feature-fault conditions.
+
+Method overview
+
+NeuroMesh modifies the bottleneck of a conventional multimodal U-Net.
+
+                 Multimodal MRI
+          ┌─────────────────────────┐
+          │ T1 / T1ce / T2 / FLAIR │
+          └────────────┬────────────┘
+                       │
+                       ▼
+                U-Net Encoder
+                       │
+                       ▼
+                 Bottleneck
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+          ▼                         ▼
+   Feature representation     GCN–GRU Controller
+                                      │
+                                      ▼
+                              Edge-activation mask
+                                      │
+                                      ▼
+                          Dynamic feature topology
+                                      │
+                       ┌──────────────┘
+                       ▼
+                  U-Net Decoder
+                       │
+                       ▼
+                 Segmentation
+
+The topology controller combines:
+
+feature projection;
+recurrent state modeling through a GRU;
+graph convolution;
+mask prediction;
+topology sparsity regularization;
+topology diversity regularization.
+
+The resulting edge-activation mask dynamically controls feature connectivity
+at the bottleneck.
+
+Main components
+models/layers.py
+
+Contains:
+
+GraphConvLayer
+NeuroMeshLayer
+
+NeuroMeshLayer implements the MLP → GRU → GCN → mask-MLP topology-control
+mechanism.
+
+models/segmentation.py
+
+Contains:
+
+NeuroMeshUNet
+
+This is the primary four-channel U-Net architecture with NeuroMesh topology
+control at the bottleneck.
+
+models/baselines.py
+
+Contains comparison architectures:
+
+PlainUNet
+DropoutUNet
+EnsembleUNet
+
+These provide reference implementations for future systematic benchmarking.
+
+utils/loss.py
+
+Implements the composite NeuroMesh objective:
+
+segmentation task loss;
+rewiring regularization;
+sparsity regularization;
+diversity regularization.
+utils/evaluation.py
+
+Provides evaluation utilities including:
+
+segmentation metrics;
+modality-dropout evaluation;
+latency measurement.
+utils/failure_models.py
+
+Implements controlled internal feature perturbations:
+
+random;
+correlated;
+cascading;
+Byzantine-style faults.
+data/brats_loader.py
+
+Provides loaders for:
+
+adult BraTS NIfTI data;
+pediatric BraTS-PEDs data;
+pre-sliced adult HDF5 data;
+synthetic MockBraTSDataset.
+
+The loader also contains patient-level split utilities for avoiding slice-level
+data leakage when working with pre-sliced datasets.
+
+Adult and pediatric BraTS support
+
+NeuroMesh is designed to handle both adult and pediatric BraTS data without
+silently assuming that their data conventions are identical.
+
+Adult BraTS
+
+The loader supports the standard four-modal configuration:
+
+T1
+T1ce
+T2
+FLAIR
+
+and handles common NIfTI naming/layout variations.
+
+Adult segmentation labels are converted to the contiguous class representation
+expected by the model.
+
+Pediatric BraTS-PEDs
+
+The pediatric loader supports:
+
+T1n
+T1c
+T2w
+T2f
+
+and the corresponding pediatric segmentation convention.
+
+The pediatric dataset contains a class structure that differs from the adult
+BraTS formulation. NeuroMesh therefore does not silently collapse or remap
+these classes without an explicit configuration choice.
+
+Data policy
+
+No patient or medical-imaging datasets are distributed with this repository.
+
+The repository contains only code, figures, tests, and reproducibility
+artifacts.
+
+Real BraTS data must be obtained independently through the appropriate dataset
+provider and used according to the applicable data-use agreement.
+
+The .gitignore configuration excludes common medical-imaging formats and
+local raw-data directories, including:
+
+data/raw/
+*.nii
+*.nii.gz
+*.h5
+*.hdf5
+*.dcm
+
+This is intentional and prevents accidental redistribution of medical-imaging
+data.
+
+Reproducibility
+Install dependencies
 pip install -r requirements.txt
-```
-
-Or with Docker (CPU only — see the Dockerfile header for GPU instructions):
-
-```bash
-docker build -t neuromesh .
-docker run neuromesh
-```
-
-## Running things
-
-```bash
-# Full automated test suite
+Run the complete test suite
 pytest tests/ -v
-
-# Train + evaluate on synthetic data (works with zero external data/deps)
+Run a synthetic training experiment
 python train.py --epochs 5 --n-train 32 --n-val 16
-
-# Regenerate any figure
+Generate the figures
 python figures/fig_a_cortical_analogy.py
 python figures/fig_b_dropout_panel.py
 python figures/fig_c_latency_benchmark.py --budget-ms 100
-
-# Inspect a real downloaded BraTS .h5 slice file's actual keys/shapes
+Inspect a real adult BraTS HDF5 case
 python data/brats_loader.py --inspect /path/to/volume_1_slice_75.h5
+Figures
+
+The figures/ directory contains scripts and generated figures documenting
+the current implementation and validation workflow.
+
+These include:
+
+NeuroMesh topology/controller visualization;
+modality-dropout experiments;
+measured latency benchmarks;
+real adult BraTS pipeline verification;
+real pediatric BraTS-PEDs pipeline verification.
+
+Figures generated from synthetic experiments are explicitly treated as
+implementation demonstrations rather than evidence of real-world segmentation
+performance.
+
+Validation philosophy
+
+NeuroMesh deliberately separates pipeline validation from scientific
+performance validation.
+
+Pipeline validation
+
+The current release establishes that:
+
+code
+ ↓
+data loading
+ ↓
+preprocessing
+ ↓
+model
+ ↓
+dynamic topology control
+ ↓
+fault injection
+ ↓
+evaluation
+
+can be executed reproducibly.
+
+This includes both synthetic experiments and real-data verification.
+
+Scientific performance validation
+
+A full real-data benchmark requires:
+
+a sufficiently large real BraTS training cohort;
+patient-level train/validation/test separation;
+real-data model training;
+hyperparameter selection without test-set leakage;
+baseline training under comparable conditions;
+independent test-set evaluation;
+repeated runs/seeds;
+statistical analysis;
+systematic modality-dropout experiments;
+systematic fault-injection experiments.
+
+These experiments constitute the next stage of NeuroMesh development.
+
+Future work
+
+Future development will focus on systematic real-data training and evaluation.
+
+Planned work includes:
+
+Training NeuroMesh on properly partitioned real BraTS cohorts.
+Establishing patient-level train/validation/test protocols.
+Comparing NeuroMesh against U-Net, stochastic/ensemble baselines, and
+established medical-image segmentation frameworks.
+Performing ablation studies of the GCN, GRU, rewiring, sparsity, and
+diversity components.
+Quantifying segmentation robustness under increasing modality and
+feature-level fault severity.
+Measuring topology adaptation and active-edge behavior during faults.
+Evaluating computational overhead and deployment efficiency.
+Extending evaluation across adult and pediatric populations.
+Investigating external-cohort generalization.
+Exploring clinically relevant validation only after sufficient
+methodological and real-data evidence has been established.
+
+The current work is therefore intended as the foundation for a subsequent
+systematic real-data study rather than as a clinical validation study.
+
+Relationship to existing frameworks
+
+The implementation of losses and evaluation metrics was cross-checked against
+established medical-imaging software where applicable.
+
+MONAI was used as a reference for
+metric/loss verification.
+
+nnU-Net is identified as an important
+reference framework for future real-data benchmarking.
+
+Neither framework is vendored into this repository.
+
+Repository structure
+NeuroMesh/
+│
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+│
+├── data/
+│   ├── __init__.py
+│   └── brats_loader.py
+│
+├── figures/
+│   ├── fig_a_cortical_analogy.py
+│   ├── fig_b_dropout_panel.py
+│   ├── fig_c_latency_benchmark.py
+│   ├── fig_a_cortical_analogy.png
+│   ├── fig_b_dropout_panel.png
+│   ├── fig_c_latency_benchmark.png
+│   ├── fig_peds_case_sanity_check.png
+│   └── fig_real_case_sanity_check.png
+│
+├── models/
+│   ├── __init__.py
+│   ├── baselines.py
+│   ├── layers.py
+│   └── segmentation.py
+│
+├── paper/
+│   └── media/
+│       └── figures/
+│
+├── tests/
+│   ├── __init__.py
+│   └── test_neuromesh.py
+│
+├── utils/
+│   ├── __init__.py
+│   ├── evaluation.py
+│   ├── failure_models.py
+│   └── loss.py
+│
+├── .gitignore
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── train.py
+Citation
+
+A formal publication citation will be added after peer-reviewed publication.
+
+If you use NeuroMesh before publication, please cite the GitHub repository and
+identify the software version/commit used in your work.
+
+BraTS dataset
+
+NeuroMesh uses and supports BraTS datasets. Users must cite the appropriate
+BraTS dataset publications corresponding to the specific dataset version used.
+
+License
+
+NeuroMesh is released under the MIT License.
+
+See LICENSE for the complete license text.
+
+The license applies to the software contained in this repository and does not
+grant redistribution rights for third-party medical-imaging datasets.
+
 ```
-
-## Using real data — adult and pediatric BraTS, one codebase
-
-`data/brats_loader.py` handles three real-data sources plus the synthetic one,
-none of which ship with any actual data — download data yourself under the
-relevant data-use agreement and point the loader at it locally.
-`.gitignore` already excludes `data/raw/`, `*.nii(.gz)`, and `*.h5` so you
-won't accidentally commit patient data.
-
-- **`BraTSDataset(root_dir, preset="adult")`** — adult BraTS 2020/2021, official
-  NIfTI layout (`<case>_t1.nii[.gz]`, etc.). Handles both the flat CBICA layout
-  and the nested Kaggle mirror layout, and both `.nii`/`.nii.gz`. 4 output
-  classes (background + NCR/NET + ED + ET), raw labels `{0,1,2,4}` remapped to
-  contiguous `{0,1,2,3}`.
-- **`BraTSDataset(root_dir, preset="peds")`** — the official TCIA BraTS-PEDs
-  release naming (`-t1n.nii.gz`, `-t1c.nii.gz`, `-t2w.nii.gz`, `-t2f.nii.gz`,
-  `-seg.nii.gz`). 5 output classes (background + NCR/NET + ED + **Cystic
-  Component** + ET — CC is a pediatric-only subregion adult BraTS doesn't
-  have). Raw labels are already contiguous `{0,1,2,3,4}`, confirmed against a
-  real downloaded case with `--inspect-seg` — no remap needed.
-- **`BraTSDataset.from_case_list(cases)`** + **`discover_peds_site_raw_cases()`**
-  — for real-world data that arrives with *inconsistent* naming across files,
-  which is common with site-level exports. BraTS-PEDs as distributed by CBTN
-  ships segmentation files under the official challenge ID
-  (`BraTS-PED-00001-000-seg.nii.gz`) but raw modality volumes under a
-  completely different site convention (`C1036890_4545_T1_to_SRI_defaced.nii`
-  — `MappingID_age-in-days_MODALITY`). No filename pattern bridges those two,
-  so `discover_peds_site_raw_cases()` instead cross-references both against
-  `BraTS-PEDs_metadata.tsv` (the official crosswalk between MappingID+age and
-  BraTS-SubjectID) to pair them correctly — verified against a real case, not
-  inferred from image content. Use `BraTSDataset.from_case_list()` directly if
-  you already have your own case-to-file mapping from any other source.
-- **`H5SliceBraTSDataset`** — the pre-sliced adult `.h5` Kaggle mirror
-  (`kaggle.com/datasets/awsaf49/brats2020-training-data`), indexed via its
-  `BraTS20_Training_Metadata.csv`. Includes `build_volume_split()` for
-  **patient-level** train/val/test splitting — critical for BraTS, since
-  splitting by slice instead of by patient leaks information between splits.
-
-**Training one model across both populations:** adult and pediatric BraTS
-don't share a class count (4 vs 5) because of the Cystic Component subregion.
-Nothing in this codebase silently unifies them — if you want a single model
-across both, decide explicitly whether to (a) train two separate output heads,
-or (b) adopt `num_classes=5` everywhere and let adult cases simply never
-populate the Cystic Component class (adult raw labels `{0,1,2,4}` already sit
-inside `{0,1,2,3,4}` without remapping if you skip the adult preset's `4→3`
-step). Neither is implemented as a default; both are viable, and the choice
-affects every downstream loss/metric call, so it's left as an explicit
-decision rather than an assumption.
-
-## What's still needed before this is a submittable result
-
-See the Discussion/Limitations section of `paper/tmi/neuromesh.tex or paper/media/main.tex` for the full
-list. Short version: a GPU, real BraTS training with a real patient-level
-split, hyperparameter search, baseline comparisons (code for these already
-exists in `models/baselines.py`), and — if this is ever positioned as a
-clinical tool rather than a research architecture — IRB approval, clinical
-validation, and a regulatory pathway. None of that is shortcut-able by more
-code.
-
-## Citation
-
-This project uses the BraTS dataset. If you use it, cite:
-
-- Menze et al., "The Multimodal Brain Tumor Image Segmentation Benchmark
-  (BraTS)," IEEE TMI, 2015.
-- Bakas et al., "Advancing the Cancer Genome Atlas glioma MRI collections with
-  expert segmentation labels and radiomic features," Scientific Data, 2017.
-- Bakas et al., "Identifying the best machine learning algorithms for brain
-  tumor segmentation...," arXiv:1811.02629, 2019.
-
-## License
-
-MIT (see `LICENSE`) — chosen as a permissive default since none was specified.
-Confirm with your institution before publishing; see the note in `LICENSE`.
