@@ -56,7 +56,6 @@ tests/
   regression/          tests for specific bugs found and fixed (see below)
   integration/         end-to-end synthetic-data pipeline tests
 docs/                 architecture, dataset, experiments, reproducibility, troubleshooting
-paper/                manuscript drafts (still contain unfilled TODOs -- see paper/README)
 figures/              reproducible figure-generation scripts
 artifacts/checkpoints/  trained model weights (gitignored; see artifacts/checkpoints/README.md)
 ```
