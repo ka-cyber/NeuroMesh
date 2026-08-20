@@ -1,0 +1,21 @@
+name: reproducibility
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  synthetic-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: End-to-end synthetic pipeline (train -> checkpoint -> evaluate), no real data
+        run: |
+          python train.py --epochs 1 --n-train 8 --n-val 4
+      - name: Table generation against real stored results (should always succeed -- pure JSON transform)
+        run: |
+          neuromesh compare --results-dir . --out-dir /tmp/ci_tables

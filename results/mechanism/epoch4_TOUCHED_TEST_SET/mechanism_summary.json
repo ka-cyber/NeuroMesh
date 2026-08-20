@@ -1,0 +1,182 @@
+{
+  "115|clean": {
+    "patient": 115,
+    "condition": "clean",
+    "mean_dead_channels": 11.296773910522461,
+    "mean_dead_channels_pct": 4.412802219390869,
+    "mean_gate": 0.44742101430892944,
+    "mean_frac_gate_below_0.1": 0.048891130834817886,
+    "mean_mask_density": 0.4503556787967682
+  },
+  "302|clean": {
+    "patient": 302,
+    "condition": "clean",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.45101889967918396,
+    "mean_frac_gate_below_0.1": 0.041481856256723404,
+    "mean_mask_density": 0.45035961270332336
+  },
+  "48|clean": {
+    "patient": 48,
+    "condition": "clean",
+    "mean_dead_channels": 7.974193572998047,
+    "mean_dead_channels_pct": 3.114919424057007,
+    "mean_gate": 0.44770094752311707,
+    "mean_frac_gate_below_0.1": 0.04576613008975983,
+    "mean_mask_density": 0.45035839080810547
+  },
+  "53|clean": {
+    "patient": 53,
+    "condition": "clean",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.4516809284687042,
+    "mean_frac_gate_below_0.1": 0.03891129046678543,
+    "mean_mask_density": 0.45035725831985474
+  },
+  "115|FLAIR_missing": {
+    "patient": 115,
+    "condition": "FLAIR_missing",
+    "mean_dead_channels": 11.296773910522461,
+    "mean_dead_channels_pct": 4.412802219390869,
+    "mean_gate": 0.44854387640953064,
+    "mean_frac_gate_below_0.1": 0.0327116921544075,
+    "mean_mask_density": 0.4503411054611206
+  },
+  "302|FLAIR_missing": {
+    "patient": 302,
+    "condition": "FLAIR_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.4533533751964569,
+    "mean_frac_gate_below_0.1": 0.01932963728904724,
+    "mean_mask_density": 0.45034557580947876
+  },
+  "48|FLAIR_missing": {
+    "patient": 48,
+    "condition": "FLAIR_missing",
+    "mean_dead_channels": 7.974193572998047,
+    "mean_dead_channels_pct": 3.114919424057007,
+    "mean_gate": 0.44998297095298767,
+    "mean_frac_gate_below_0.1": 0.02719254046678543,
+    "mean_mask_density": 0.4503414034843445
+  },
+  "53|FLAIR_missing": {
+    "patient": 53,
+    "condition": "FLAIR_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.45287343859672546,
+    "mean_frac_gate_below_0.1": 0.023664314299821854,
+    "mean_mask_density": 0.4503537714481354
+  },
+  "115|T1_missing": {
+    "patient": 115,
+    "condition": "T1_missing",
+    "mean_dead_channels": 11.296773910522461,
+    "mean_dead_channels_pct": 4.412802219390869,
+    "mean_gate": 0.4453102946281433,
+    "mean_frac_gate_below_0.1": 0.045085687190294266,
+    "mean_mask_density": 0.45034170150756836
+  },
+  "302|T1_missing": {
+    "patient": 302,
+    "condition": "T1_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.4486902952194214,
+    "mean_frac_gate_below_0.1": 0.03553427383303642,
+    "mean_mask_density": 0.450344055891037
+  },
+  "48|T1_missing": {
+    "patient": 48,
+    "condition": "T1_missing",
+    "mean_dead_channels": 7.974193572998047,
+    "mean_dead_channels_pct": 3.114919424057007,
+    "mean_gate": 0.44481781125068665,
+    "mean_frac_gate_below_0.1": 0.04281754046678543,
+    "mean_mask_density": 0.4503462314605713
+  },
+  "53|T1_missing": {
+    "patient": 53,
+    "condition": "T1_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.45013803243637085,
+    "mean_frac_gate_below_0.1": 0.031224798411130905,
+    "mean_mask_density": 0.4503460228443146
+  },
+  "115|T1ce_missing": {
+    "patient": 115,
+    "condition": "T1ce_missing",
+    "mean_dead_channels": 11.296773910522461,
+    "mean_dead_channels_pct": 4.412802219390869,
+    "mean_gate": 0.454039603471756,
+    "mean_frac_gate_below_0.1": 0.007409274112433195,
+    "mean_mask_density": 0.4503399133682251
+  },
+  "302|T1ce_missing": {
+    "patient": 302,
+    "condition": "T1ce_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.45526719093322754,
+    "mean_frac_gate_below_0.1": 0.007459677290171385,
+    "mean_mask_density": 0.4503351151943207
+  },
+  "48|T1ce_missing": {
+    "patient": 48,
+    "condition": "T1ce_missing",
+    "mean_dead_channels": 7.974193572998047,
+    "mean_dead_channels_pct": 3.114919424057007,
+    "mean_gate": 0.4556613564491272,
+    "mean_frac_gate_below_0.1": 0.0073840725235641,
+    "mean_mask_density": 0.4503343999385834
+  },
+  "53|T1ce_missing": {
+    "patient": 53,
+    "condition": "T1ce_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.45726776123046875,
+    "mean_frac_gate_below_0.1": 0.0034274193458259106,
+    "mean_mask_density": 0.4503316581249237
+  },
+  "115|T2_missing": {
+    "patient": 115,
+    "condition": "T2_missing",
+    "mean_dead_channels": 11.296773910522461,
+    "mean_dead_channels_pct": 4.412802219390869,
+    "mean_gate": 0.4502240717411041,
+    "mean_frac_gate_below_0.1": 0.03051915392279625,
+    "mean_mask_density": 0.4503471255302429
+  },
+  "302|T2_missing": {
+    "patient": 302,
+    "condition": "T2_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.4539373517036438,
+    "mean_frac_gate_below_0.1": 0.021950604394078255,
+    "mean_mask_density": 0.45034343004226685
+  },
+  "48|T2_missing": {
+    "patient": 48,
+    "condition": "T2_missing",
+    "mean_dead_channels": 7.974193572998047,
+    "mean_dead_channels_pct": 3.114919424057007,
+    "mean_gate": 0.4512237012386322,
+    "mean_frac_gate_below_0.1": 0.02875504083931446,
+    "mean_mask_density": 0.4503498673439026
+  },
+  "53|T2_missing": {
+    "patient": 53,
+    "condition": "T2_missing",
+    "mean_dead_channels": 9.967741966247559,
+    "mean_dead_channels_pct": 3.893649101257324,
+    "mean_gate": 0.453883558511734,
+    "mean_frac_gate_below_0.1": 0.026184475049376488,
+    "mean_mask_density": 0.45034584403038025
+  }
+}

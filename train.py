@@ -1,19 +1,20 @@
 """
 train.py
 
-End-to-end runnable script that:
-  1. Builds a MockBraTSDataset (synthetic data -- see data/brats_loader.py) so
-     the whole pipeline can be verified locally with zero real data.
-  2. Trains NeuroMeshUNet for a few epochs on that synthetic data.
-  3. Runs utils.evaluation.evaluate_modality_dropout to sweep clean vs.
-     FLAIR-dropped vs. random-dropout inputs, reporting MEASURED Dice and
-     latency numbers (not numbers copied from any manuscript).
+SYNTHETIC-DATA SMOKE TEST ONLY. This does not train on real BraTS data and
+its Dice/latency numbers carry no clinical or scientific meaning -- it
+exists purely to verify the pipeline (data loading -> model -> loss ->
+evaluation) runs end to end without requiring any real, licensed dataset.
 
-To use real data: swap MockBraTSDataset for BraTSDataset (data/brats_loader.py)
-once you have properly licensed BraTS volumes on disk -- no other code should
-need to change.
+For the actual real-data pipeline used to produce every number in README.md
+and results/, use the `neuromesh` CLI instead:
 
-Run:
+    neuromesh train --dataset brats_h5 --data-root <path> --metadata-csv <path> ...
+
+See docs/dataset.md for how to obtain real data, and `neuromesh reproduce`
+for the exact commands used to produce this repository's reported results.
+
+Run this file:
     python train.py --epochs 3 --batch-size 4
 """
 
@@ -23,10 +24,10 @@ import json
 import torch
 from torch.utils.data import DataLoader
 
-from data.brats_loader import MockBraTSDataset
-from models.segmentation import NeuroMeshUNet
-from utils.loss import NeuroMeshLoss
-from utils.evaluation import evaluate_modality_dropout, apply_modality_dropout
+from neuromesh.data import MockBraTSDataset
+from neuromesh.models import NeuroMeshUNet
+from neuromesh.losses import NeuroMeshLoss
+from neuromesh.evaluation import evaluate_modality_dropout, apply_modality_dropout
 
 
 def parse_args():

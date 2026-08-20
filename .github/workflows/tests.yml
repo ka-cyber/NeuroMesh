@@ -7,14 +7,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Run test suite
-        run: python -m pytest tests/ -v
-      - name: Sanity-check full pipeline on synthetic data
-        run: python train.py --epochs 1 --n-train 8 --n-val 4 --image-size 32
+          python-version: ${{ matrix.python-version }}
+      - name: Install package (CPU, dev + data extras)
+        run: pip install -e ".[dev,data]"
+      - name: Package import check
+        run: python -c "import neuromesh; from neuromesh.models import NeuroMeshUNet; print(neuromesh.__version__)"
+      - name: CLI smoke check
+        run: neuromesh --help
+      - name: Run tests (synthetic fixtures only -- no real dataset needed)
+        run: pytest tests/ -v

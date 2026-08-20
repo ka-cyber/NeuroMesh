@@ -1,0 +1,8 @@
+# Real dataset config -- see docs/dataset.md for how to obtain this.
+source: kaggle:awsaf49/brats2020-training-data
+format: h5
+n_patients_total: 369
+subset_used: 30            # random, seed=42 -- see docs/dataset.md
+slices_per_patient: 155
+native_resolution: [240, 240]
+modality_order: [FLAIR, T1, T1ce, T2]   # empirically verified -- see docs/dataset.md

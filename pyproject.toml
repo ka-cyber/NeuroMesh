@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuromesh"
+version = "0.1.0"
+description = "Topology-inspired segmentation controller for multimodal brain MRI -- pilot study on missing-modality robustness."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "NeuroMesh contributors" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+data = [
+    "nibabel>=5.0",
+    "h5py>=3.8",
+]
+viz = [
+    "matplotlib>=3.7",
+]
+dev = [
+    "pytest>=7.4",
+    "ruff>=0.4",
+]
+all = ["neuromesh[data,viz,dev]"]
+
+[project.scripts]
+neuromesh = "neuromesh.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["neuromesh*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"

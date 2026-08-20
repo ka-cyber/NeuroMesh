@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. No manuscript DOI exists yet -- do not cite one that hasn't been assigned."
+title: "NeuroMesh: A Topology-Inspired Bottleneck Controller for Multimodal MRI Segmentation (Pilot Study)"
+version: 0.1.0
+date-released: 2026-08-21
+type: software
+authors:
+  - name: "NeuroMesh contributors"
+license: MIT
+repository-code: "<this-repo-url>"
+abstract: >
+  Pilot study (n=4 validation, n=4 test patients) of a bottleneck controller
+  for BraTS multimodal segmentation, evaluated for robustness to missing MRI
+  modalities. Reports that the intended dynamic topology-adaptation mechanism
+  was not clearly observed empirically; a largely static learned bottleneck
+  gate is a more defensible description of the trained model's behavior.

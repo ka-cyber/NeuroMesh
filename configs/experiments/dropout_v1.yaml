@@ -1,0 +1,14 @@
+# Identical protocol to neuromesh_v1_frozen.yaml, model swapped for baseline comparison.
+model: dropout
+base_ch: 16
+num_classes: 4
+dataset: brats_h5
+image_size: 96
+batch_size: 8
+epochs: 4
+lr: 0.001
+modality_dropout_prob: 0.15
+val_fraction: 0.15
+test_fraction: 0.15
+split_seed: 42
+seed: 0

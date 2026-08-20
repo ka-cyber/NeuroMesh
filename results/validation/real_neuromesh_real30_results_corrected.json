@@ -1,0 +1,87 @@
+{
+  "REAL_DATA": true,
+  "note": "Re-evaluation of an already-trained checkpoint with corrected modality-channel labels (see data/brats_loader.py H5SliceBraTSDataset docstring for the channel-order verification this correction is based on). No retraining occurred.",
+  "checkpoint": "checkpoints/neuromesh_real30.pt",
+  "n_val_patients": 4,
+  "n_val_slices": 620,
+  "eval_wall_clock_s": 103.3078236579895,
+  "eval": {
+    "clean": {
+      "mean_dice_per_class": [
+        0.9973042011260986,
+        0.6289993524551392,
+        0.6652134656906128,
+        0.6772189140319824
+      ],
+      "mean_dice": 0.7421839833259583,
+      "mean_latency_ms": 103.65037838460012,
+      "max_latency_ms": 147.259417999976
+    },
+    "ch0_dropped_T2_or_FLAIR_unconfirmed": {
+      "mean_dice_per_class": [
+        0.9934293031692505,
+        0.6177145838737488,
+        0.5149722099304199,
+        0.5663005113601685
+      ],
+      "mean_dice": 0.6731041520833969,
+      "mean_latency_ms": 102.69200194870092,
+      "max_latency_ms": 121.08008999985032
+    },
+    "ch1_dropped_likely_T1": {
+      "mean_dice_per_class": [
+        0.9979304075241089,
+        0.5986282229423523,
+        0.5770931243896484,
+        0.5647109746932983
+      ],
+      "mean_dice": 0.684590682387352,
+      "mean_latency_ms": 101.67913264104428,
+      "max_latency_ms": 113.48074399984398
+    },
+    "ch2_dropped_likely_T1ce": {
+      "mean_dice_per_class": [
+        0.9965565800666809,
+        0.62824946641922,
+        0.6218324303627014,
+        0.6666666865348816
+      ],
+      "mean_dice": 0.728326290845871,
+      "mean_latency_ms": 103.55205519230228,
+      "max_latency_ms": 176.56871000008323
+    },
+    "ch3_dropped_T2_or_FLAIR_unconfirmed": {
+      "mean_dice_per_class": [
+        0.9967159628868103,
+        0.6303603053092957,
+        0.6259611248970032,
+        0.7015623450279236
+      ],
+      "mean_dice": 0.7386499345302582,
+      "mean_latency_ms": 103.19117417943511,
+      "max_latency_ms": 146.05380900002274
+    },
+    "random_20pct": {
+      "mean_dice_per_class": [
+        0.9962792992591858,
+        0.5976874232292175,
+        0.5833829045295715,
+        0.5856504440307617
+      ],
+      "mean_dice": 0.6907500177621841,
+      "mean_latency_ms": 102.12510641027177,
+      "max_latency_ms": 111.9217089999438
+    },
+    "random_50pct": {
+      "mean_dice_per_class": [
+        0.9945903420448303,
+        0.5509198904037476,
+        0.45427414774894714,
+        0.5175161361694336
+      ],
+      "mean_dice": 0.6293251290917397,
+      "mean_latency_ms": 102.98977976925435,
+      "max_latency_ms": 113.36238700005197
+    }
+  }
+}

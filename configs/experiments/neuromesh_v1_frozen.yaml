@@ -1,0 +1,20 @@
+# Exact configuration for the frozen v1 NeuroMesh run (checkpoints/neuromesh_real30.pt).
+# This file documents the protocol -- neuromesh train doesn't currently consume
+# YAML directly (it's CLI-flag driven, see neuromesh/training/train_real.py).
+# Mirrors PROTOCOL_FREEZE_v1.md exactly; that document is the authoritative source
+# if this ever drifts out of sync with it.
+model: neuromesh
+base_ch: 16
+num_classes: 4
+dataset: brats_h5
+image_size: 96          # compute accommodation, native is 240 -- see docs/reproducibility.md
+batch_size: 8
+epochs: 4
+lr: 0.001
+modality_dropout_prob: 0.15
+val_fraction: 0.15
+test_fraction: 0.15
+split_seed: 42
+seed: 0
+checkpoint: artifacts/checkpoints/neuromesh_real30.pt
+checkpoint_sha256: 19108deeffbca2723a4edf9dc046164712b5b69decbe98d7bf884448af152962

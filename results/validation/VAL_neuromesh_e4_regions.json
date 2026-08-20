@@ -1,0 +1,963 @@
+{
+  "REAL_DATA": true,
+  "SPLIT": "val",
+  "UNTOUCHED_TEST_SET": false,
+  "protocol_freeze_doc": "PROTOCOL_FREEZE_v1.md",
+  "checkpoint": "checkpoints/neuromesh_real30.pt",
+  "checkpoint_sha256": "see PROTOCOL_FREEZE_v1.md",
+  "patient_ids": [
+    112,
+    126,
+    259,
+    333
+  ],
+  "n_patients": 4,
+  "timestamp_utc": "2026-08-19T23:05:10Z",
+  "results": {
+    "clean": {
+      "per_patient": {
+        "259": {
+          "WT": {
+            "dice": 0.33479874951616984,
+            "hd95_mm": 13.152946437965905,
+            "sensitivity": 0.20105771325912253,
+            "precision": 0.9999583159233031,
+            "pred_voxel_count": 23990,
+            "target_voxel_count": 119314
+          },
+          "TC": {
+            "dice": 0.0214326813131881,
+            "hd95_mm": 37.5858997036862,
+            "sensitivity": 0.010996309962288096,
+            "precision": 0.42090395361326566,
+            "pred_voxel_count": 354,
+            "target_voxel_count": 13550
+          },
+          "ET": {
+            "dice": 0.021660008963900575,
+            "hd95_mm": 38.15101064892993,
+            "sensitivity": 0.011134434606996948,
+            "precision": 0.3961038948178445,
+            "pred_voxel_count": 308,
+            "target_voxel_count": 10957
+          }
+        },
+        "112": {
+          "WT": {
+            "dice": 0.8648516606445222,
+            "hd95_mm": 6.708203932499369,
+            "sensitivity": 0.8520712143129974,
+            "precision": 0.8780213399090391,
+            "pred_voxel_count": 165324,
+            "target_voxel_count": 170359
+          },
+          "TC": {
+            "dice": 0.7439617649587211,
+            "hd95_mm": 27.748873851023216,
+            "sensitivity": 0.7639566474721167,
+            "precision": 0.7249868315166619,
+            "pred_voxel_count": 72142,
+            "target_voxel_count": 68462
+          },
+          "ET": {
+            "dice": 0.7734119799173705,
+            "hd95_mm": 24.779023386727733,
+            "sensitivity": 0.8601262143805504,
+            "precision": 0.7025807983059894,
+            "pred_voxel_count": 58974,
+            "target_voxel_count": 48172
+          }
+        },
+        "333": {
+          "WT": {
+            "dice": 0.8849273622004281,
+            "hd95_mm": 4.47213595499958,
+            "sensitivity": 0.7967469764540202,
+            "precision": 0.9950556651289031,
+            "pred_voxel_count": 151082,
+            "target_voxel_count": 188686
+          },
+          "TC": {
+            "dice": 0.01604394500725135,
+            "hd95_mm": 32.70473885997278,
+            "sensitivity": 0.008102119406137188,
+            "precision": 0.8109480808064626,
+            "pred_voxel_count": 1772,
+            "target_voxel_count": 177361
+          },
+          "ET": {
+            "dice": 0.14532940028069524,
+            "hd95_mm": 34.10278580995987,
+            "sensitivity": 0.08440890918510463,
+            "precision": 0.5222614837298505,
+            "pred_voxel_count": 1415,
+            "target_voxel_count": 8755
+          }
+        },
+        "126": {
+          "WT": {
+            "dice": 0.788463023503971,
+            "hd95_mm": 37.094473981982816,
+            "sensitivity": 0.8060789473472084,
+            "precision": 0.7716005843928762,
+            "pred_voxel_count": 39698,
+            "target_voxel_count": 38000
+          },
+          "TC": {
+            "dice": 0.6594551914792843,
+            "hd95_mm": 42.8485705712571,
+            "sensitivity": 0.8474025973596082,
+            "precision": 0.53974408683793,
+            "pred_voxel_count": 30948,
+            "target_voxel_count": 19712
+          },
+          "ET": {
+            "dice": 0.643335002056084,
+            "hd95_mm": 40.758431593167415,
+            "sensitivity": 0.8751857354584457,
+            "precision": 0.5085989781784342,
+            "pred_voxel_count": 27794,
+            "target_voxel_count": 16152
+          }
+        }
+      },
+      "summary": {
+        "WT": {
+          "dice": {
+            "mean": 0.7182601989662728,
+            "std": 0.22429785984541348,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 15.356940076861918,
+            "std": 12.948528544806637,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.6639887128433372,
+            "std": 0.268092581505631,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.9111589763385303,
+            "std": 0.0942053937034266,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "TC": {
+          "dice": {
+            "mean": 0.36022339568961126,
+            "std": 0.342794926333707,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 35.22202074648482,
+            "std": 5.611078741457444,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.40761441855003755,
+            "std": 0.39915831056134965,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.62414573819358,
+            "std": 0.15288468126271423,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "ET": {
+          "dice": {
+            "mean": 0.39593409780451255,
+            "std": 0.3188183522428477,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 34.44781285969624,
+            "std": 6.065107505293271,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.45771382340777444,
+            "std": 0.4107944252433754,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.5323862887580296,
+            "std": 0.10978092935456406,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        }
+      },
+      "wall_clock_s": 47.8938934803009
+    },
+    "FLAIR_missing": {
+      "per_patient": {
+        "259": {
+          "WT": {
+            "dice": 0.0020429351367925674,
+            "hd95_mm": 44.76605857119878,
+            "sensitivity": 0.0010225120270796176,
+            "precision": 0.9999999918032788,
+            "pred_voxel_count": 122,
+            "target_voxel_count": 119314
+          },
+          "TC": {
+            "dice": 7.380073800193351e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 13550
+          },
+          "ET": {
+            "dice": 9.12658574344012e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 10957
+          }
+        },
+        "112": {
+          "WT": {
+            "dice": 0.4290164505126658,
+            "hd95_mm": 22.494443758403985,
+            "sensitivity": 0.2821336119589682,
+            "precision": 0.8949298973896339,
+            "pred_voxel_count": 53707,
+            "target_voxel_count": 170359
+          },
+          "TC": {
+            "dice": 0.7042780748687811,
+            "hd95_mm": 33.11344051892604,
+            "sensitivity": 0.6155823668514566,
+            "precision": 0.8228357218004835,
+            "pred_voxel_count": 51218,
+            "target_voxel_count": 68462
+          },
+          "ET": {
+            "dice": 0.7660603576393292,
+            "hd95_mm": 30.80178486029437,
+            "sensitivity": 0.7759279249195398,
+            "precision": 0.7564406127788954,
+            "pred_voxel_count": 49413,
+            "target_voxel_count": 48172
+          }
+        },
+        "333": {
+          "WT": {
+            "dice": 0.00032571579196046376,
+            "hd95_mm": 63.48228099241551,
+            "sensitivity": 0.00016429411826969517,
+            "precision": 0.018629807681111894,
+            "pred_voxel_count": 1664,
+            "target_voxel_count": 188686
+          },
+          "TC": {
+            "dice": 5.619840284107542e-12,
+            "hd95_mm": 65.19202405202648,
+            "sensitivity": 0.0,
+            "precision": 0.0,
+            "pred_voxel_count": 580,
+            "target_voxel_count": 177361
+          },
+          "ET": {
+            "dice": 1.0712372789425562e-10,
+            "hd95_mm": 63.24633868546036,
+            "sensitivity": 0.0,
+            "precision": 0.0,
+            "pred_voxel_count": 580,
+            "target_voxel_count": 8755
+          }
+        },
+        "126": {
+          "WT": {
+            "dice": 0.5870670212477351,
+            "hd95_mm": 43.05810028322197,
+            "sensitivity": 0.45894736840897504,
+            "precision": 0.8144204725499944,
+            "pred_voxel_count": 21414,
+            "target_voxel_count": 38000
+          },
+          "TC": {
+            "dice": 0.7618528880255043,
+            "hd95_mm": 50.462361971096264,
+            "sensitivity": 0.7805397726876755,
+            "precision": 0.744039847151988,
+            "pred_voxel_count": 20679,
+            "target_voxel_count": 19712
+          },
+          "ET": {
+            "dice": 0.7310887385231036,
+            "hd95_mm": 48.47525127767036,
+            "sensitivity": 0.8227464090624848,
+            "precision": 0.6578061577735964,
+            "pred_voxel_count": 20202,
+            "target_voxel_count": 16152
+          }
+        }
+      },
+      "summary": {
+        "WT": {
+          "dice": {
+            "mean": 0.25461303067228847,
+            "std": 0.2595168108087676,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 43.45022090131006,
+            "std": 14.511316398843976,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.18556694662832313,
+            "std": 0.19525161187945683,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.6819950423560048,
+            "std": 0.3886059474256972,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "TC": {
+          "dice": {
+            "mean": 0.3665327407434265,
+            "std": 0.3670975447977439,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 49.589275514016265,
+            "std": 13.110570553149802,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          },
+          "sensitivity": {
+            "mean": 0.34903053488478303,
+            "std": 0.3538695840270602,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.5222918563174904,
+            "std": 0.37071443173695745,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          }
+        },
+        "ET": {
+          "dice": {
+            "mean": 0.3742872740902056,
+            "std": 0.37449144214464136,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 47.507791607808365,
+            "std": 13.263087923208289,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          },
+          "sensitivity": {
+            "mean": 0.39966858349550616,
+            "std": 0.4000112160183571,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.47141559018416396,
+            "std": 0.3357644838574213,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          }
+        }
+      },
+      "wall_clock_s": 42.872071743011475
+    },
+    "T1_missing": {
+      "per_patient": {
+        "259": {
+          "WT": {
+            "dice": 0.7473681545446623,
+            "hd95_mm": 13.076696830622021,
+            "sensitivity": 0.6185108201835618,
+            "precision": 0.9440457458527582,
+            "pred_voxel_count": 78171,
+            "target_voxel_count": 119314
+          },
+          "TC": {
+            "dice": 0.29315690643056125,
+            "hd95_mm": 40.11234224026316,
+            "sensitivity": 0.4954243542069797,
+            "precision": 0.20816794839344555,
+            "pred_voxel_count": 32248,
+            "target_voxel_count": 13550
+          },
+          "ET": {
+            "dice": 0.28732213202327833,
+            "hd95_mm": 41.244999469833054,
+            "sensitivity": 0.4892762617058249,
+            "precision": 0.20337632776163214,
+            "pred_voxel_count": 26360,
+            "target_voxel_count": 10957
+          }
+        },
+        "112": {
+          "WT": {
+            "dice": 0.859492858753419,
+            "hd95_mm": 5.830951894845301,
+            "sensitivity": 0.8728626019120043,
+            "precision": 0.8465265087422419,
+            "pred_voxel_count": 175659,
+            "target_voxel_count": 170359
+          },
+          "TC": {
+            "dice": 0.6836808811314979,
+            "hd95_mm": 29.154759474226502,
+            "sensitivity": 0.7561713066992468,
+            "precision": 0.6238732224557259,
+            "pred_voxel_count": 82980,
+            "target_voxel_count": 68462
+          },
+          "ET": {
+            "dice": 0.7227973858610688,
+            "hd95_mm": 28.61817604250837,
+            "sensitivity": 0.8253757369254884,
+            "precision": 0.6428975664864921,
+            "pred_voxel_count": 61845,
+            "target_voxel_count": 48172
+          }
+        },
+        "333": {
+          "WT": {
+            "dice": 0.8790565790816506,
+            "hd95_mm": 5.830951894845301,
+            "sensitivity": 0.8009815248571649,
+            "precision": 0.9739960945744703,
+            "pred_voxel_count": 155169,
+            "target_voxel_count": 188686
+          },
+          "TC": {
+            "dice": 0.12481119649740983,
+            "hd95_mm": 20.346989949375804,
+            "sensitivity": 0.06918657427467602,
+            "precision": 0.6367268575842296,
+            "pred_voxel_count": 19272,
+            "target_voxel_count": 177361
+          },
+          "ET": {
+            "dice": 0.11772740858335563,
+            "hd95_mm": 43.42810150121693,
+            "sensitivity": 0.15750999427098686,
+            "precision": 0.09398854961191463,
+            "pred_voxel_count": 14672,
+            "target_voxel_count": 8755
+          }
+        },
+        "126": {
+          "WT": {
+            "dice": 0.7822114604552952,
+            "hd95_mm": 32.63280201891318,
+            "sensitivity": 0.8246052631361946,
+            "precision": 0.743963531880055,
+            "pred_voxel_count": 42119,
+            "target_voxel_count": 38000
+          },
+          "TC": {
+            "dice": 0.5728294711017575,
+            "hd95_mm": 39.73789085918759,
+            "sensitivity": 0.7793729707396828,
+            "precision": 0.45282518346883527,
+            "pred_voxel_count": 33927,
+            "target_voxel_count": 19712
+          },
+          "ET": {
+            "dice": 0.5714718483669132,
+            "hd95_mm": 37.656340767525464,
+            "sensitivity": 0.8175458147091663,
+            "precision": 0.4392588649976961,
+            "pred_voxel_count": 30062,
+            "target_voxel_count": 16152
+          }
+        }
+      },
+      "summary": {
+        "WT": {
+          "dice": {
+            "mean": 0.8170322632087568,
+            "std": 0.05411906843679529,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 14.342850659806452,
+            "std": 10.966201568997613,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.7792400525222314,
+            "std": 0.09634542261539776,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.8771329702623815,
+            "std": 0.09018126079534944,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "TC": {
+          "dice": {
+            "mean": 0.41861961379030665,
+            "std": 0.22141727154104904,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 32.33799563076326,
+            "std": 8.202379597952794,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.5250388014801464,
+            "std": 0.2858261592110137,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.4803983029755591,
+            "std": 0.17312806847902493,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "ET": {
+          "dice": {
+            "mean": 0.42482969370865403,
+            "std": 0.23638359193231376,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 37.73690444527095,
+            "std": 5.65363053312839,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.5724269519028666,
+            "std": 0.2752891496947408,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.34488032721443374,
+            "std": 0.21253920181176952,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        }
+      },
+      "wall_clock_s": 49.685545921325684
+    },
+    "T1ce_missing": {
+      "per_patient": {
+        "259": {
+          "WT": {
+            "dice": 0.015567049752893318,
+            "hd95_mm": 40.718546143004666,
+            "sensitivity": 0.007844846371692804,
+            "precision": 0.995744679791761,
+            "pred_voxel_count": 940,
+            "target_voxel_count": 119314
+          },
+          "TC": {
+            "dice": 7.380073800193351e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 13550
+          },
+          "ET": {
+            "dice": 9.12658574344012e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 10957
+          }
+        },
+        "112": {
+          "WT": {
+            "dice": 0.8605951514691745,
+            "hd95_mm": 5.0990195135927845,
+            "sensitivity": 0.791422818866092,
+            "precision": 0.9430172130336285,
+            "pred_voxel_count": 142973,
+            "target_voxel_count": 170359
+          },
+          "TC": {
+            "dice": 0.0008445823103571334,
+            "hd95_mm": 34.55430508634199,
+            "sensitivity": 0.00042359264993100423,
+            "precision": 0.13744075764246086,
+            "pred_voxel_count": 211,
+            "target_voxel_count": 68462
+          },
+          "ET": {
+            "dice": 2.0758947105771838e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 48172
+          }
+        },
+        "333": {
+          "WT": {
+            "dice": 0.7683783219346565,
+            "hd95_mm": 7.681145747868608,
+            "sensitivity": 0.6239678619472352,
+            "precision": 0.9997622322905542,
+            "pred_voxel_count": 117762,
+            "target_voxel_count": 188686
+          },
+          "TC": {
+            "dice": 5.638218097520659e-12,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 177361
+          },
+          "ET": {
+            "dice": 1.1422044544669097e-10,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 8755
+          }
+        },
+        "126": {
+          "WT": {
+            "dice": 0.8184078541719108,
+            "hd95_mm": 3.1622776601683795,
+            "sensitivity": 0.7579210526116337,
+            "precision": 0.8893864064203629,
+            "pred_voxel_count": 32383,
+            "target_voxel_count": 38000
+          },
+          "TC": {
+            "dice": 5.073051947794589e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 19712
+          },
+          "ET": {
+            "dice": 6.19118375395052e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 16152
+          }
+        }
+      },
+      "summary": {
+        "WT": {
+          "dice": {
+            "mean": 0.6157370943321587,
+            "std": 0.3480425016478632,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 14.165247266158609,
+            "std": 15.414141879734533,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.5452891449491635,
+            "std": 0.3165560093308601,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.9569776328840767,
+            "std": 0.04499131329930582,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "TC": {
+          "dice": {
+            "mean": 0.00021114561013165224,
+            "std": 0.00036571484938977065,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 34.55430508634199,
+            "std": 0.0,
+            "n_patients": 1,
+            "n_excluded_undefined": 3
+          },
+          "sensitivity": {
+            "mean": 0.00010589816248275106,
+            "std": 0.00018342099784830914,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.13744075764246086,
+            "std": 0.0,
+            "n_patients": 1,
+            "n_excluded_undefined": 3
+          }
+        },
+        "ET": {
+          "dice": {
+            "mean": 7.203927188159231e-11,
+            "std": 3.493261238017911e-11,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": null,
+            "std": null,
+            "n_patients": 0,
+            "n_excluded_undefined": 4
+          },
+          "sensitivity": {
+            "mean": 0.0,
+            "std": 0.0,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": null,
+            "std": null,
+            "n_patients": 0,
+            "n_excluded_undefined": 4
+          }
+        }
+      },
+      "wall_clock_s": 30.81507658958435
+    },
+    "T2_missing": {
+      "per_patient": {
+        "259": {
+          "WT": {
+            "dice": 0.06228227594976588,
+            "hd95_mm": 48.76474136094644,
+            "sensitivity": 0.032142078884019126,
+            "precision": 0.9999999997392438,
+            "pred_voxel_count": 3835,
+            "target_voxel_count": 119314
+          },
+          "TC": {
+            "dice": 7.380073800193351e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 13550
+          },
+          "ET": {
+            "dice": 9.12658574344012e-11,
+            "hd95_mm": null,
+            "sensitivity": 0.0,
+            "precision": null,
+            "pred_voxel_count": 0,
+            "target_voxel_count": 10957
+          }
+        },
+        "112": {
+          "WT": {
+            "dice": 0.8316443570551575,
+            "hd95_mm": 8.12403840463596,
+            "sensitivity": 0.7746112620949018,
+            "precision": 0.8977434299531424,
+            "pred_voxel_count": 146993,
+            "target_voxel_count": 170359
+          },
+          "TC": {
+            "dice": 0.7440903073786124,
+            "hd95_mm": 23.558437978779494,
+            "sensitivity": 0.747144401262786,
+            "precision": 0.7410610801932508,
+            "pred_voxel_count": 69024,
+            "target_voxel_count": 68462
+          },
+          "ET": {
+            "dice": 0.7724649393888998,
+            "hd95_mm": 18.24828759089466,
+            "sensitivity": 0.8432699493306637,
+            "precision": 0.7126291598562772,
+            "pred_voxel_count": 57003,
+            "target_voxel_count": 48172
+          }
+        },
+        "333": {
+          "WT": {
+            "dice": 0.8296622296126885,
+            "hd95_mm": 6.082762530298219,
+            "sensitivity": 0.7113617332461796,
+            "precision": 0.9951585518583956,
+            "pred_voxel_count": 134877,
+            "target_voxel_count": 188686
+          },
+          "TC": {
+            "dice": 0.013953696560173477,
+            "hd95_mm": 40.718546143004666,
+            "sensitivity": 0.007030857967608262,
+            "precision": 0.9082301522882518,
+            "pred_voxel_count": 1373,
+            "target_voxel_count": 177361
+          },
+          "ET": {
+            "dice": 0.1568548792340934,
+            "hd95_mm": 18.23456704283606,
+            "sensitivity": 0.08932038833931234,
+            "precision": 0.6430921047342992,
+            "pred_voxel_count": 1216,
+            "target_voxel_count": 8755
+          }
+        },
+        "126": {
+          "WT": {
+            "dice": 0.774390080252095,
+            "hd95_mm": 25.85315167588187,
+            "sensitivity": 0.7592894736642292,
+            "precision": 0.7901035105758776,
+            "pred_voxel_count": 36518,
+            "target_voxel_count": 38000
+          },
+          "TC": {
+            "dice": 0.677719745745218,
+            "hd95_mm": 40.68414523883339,
+            "sensitivity": 0.8491781655413363,
+            "precision": 0.563868490178405,
+            "pred_voxel_count": 29686,
+            "target_voxel_count": 19712
+          },
+          "ET": {
+            "dice": 0.6499735090265146,
+            "hd95_mm": 30.326487464552127,
+            "sensitivity": 0.8734522040073395,
+            "precision": 0.5175538354115135,
+            "pred_voxel_count": 27259,
+            "target_voxel_count": 16152
+          }
+        }
+      },
+      "summary": {
+        "WT": {
+          "dice": {
+            "mean": 0.6244947357174268,
+            "std": 0.3254059504691018,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 22.20617349294062,
+            "std": 17.153198584971253,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "sensitivity": {
+            "mean": 0.5693511369723324,
+            "std": 0.31103411077275894,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.920751373031665,
+            "std": 0.08575401230403323,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          }
+        },
+        "TC": {
+          "dice": {
+            "mean": 0.3589409374394511,
+            "std": 0.3527799451059422,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 34.98704312020585,
+            "std": 8.081256398379715,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          },
+          "sensitivity": {
+            "mean": 0.4008383561929326,
+            "std": 0.39896497181846285,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.7377199075533025,
+            "std": 0.14060491020046567,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          }
+        },
+        "ET": {
+          "dice": {
+            "mean": 0.3948233319351934,
+            "std": 0.3241254558034773,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "hd95_mm": {
+            "mean": 22.269780699427614,
+            "std": 5.6969547413661905,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          },
+          "sensitivity": {
+            "mean": 0.4515106354193289,
+            "std": 0.4082136929095594,
+            "n_patients": 4,
+            "n_excluded_undefined": 0
+          },
+          "precision": {
+            "mean": 0.62442503333403,
+            "std": 0.08072562673568834,
+            "n_patients": 3,
+            "n_excluded_undefined": 1
+          }
+        }
+      },
+      "wall_clock_s": 44.22974157333374
+    }
+  }
+}
