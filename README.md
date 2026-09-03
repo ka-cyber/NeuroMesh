@@ -148,7 +148,11 @@ docker build -t neuromesh .
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). No manuscript DOI exists yet — do not cite one.
+If you use this repository in your research, please cite:
+
+```
+https://doi.org/10.64898/2026.08.23.746542
+```
 
 ## License
 
